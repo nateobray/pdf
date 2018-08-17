@@ -1,0 +1,14 @@
+{
+    "name": "obray/pdf",
+    "description": "Simple PDF reader/writer",
+    "license": "MIT",
+    "homepage": "http://www.obray.net",
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            
+        }
+    }
+}
