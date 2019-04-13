@@ -1,25 +1,25 @@
 <?php
-namespace obray;
+namespace obray\pdf;
 
 class PDF
 {
 
-    private $PDFReader;
-    private $PDFTrailer;
-    private $PDFXRefTable;
-    private $PDFBody;
+    private $Reader;
+    private $Trailer;
+    private $XRefTable;
+    private $Body;
 
     public function __construct(string $pdf=NULL)
     {
-        $this->PDFReader = new \obray\PDFReader($pdf);
+        $this->PDFReader = new \obray\pdf\Reader($pdf);
         $this->decode();
     }
 
     public function decode()
     {
-        $this->PDFTrailer = new \obray\PDFTrailer($this->PDFReader);
-        $this->PDFXRefTable = new \obray\PDFXRefTable($this->PDFReader);
-        $this->PDFBody = new \obray\PDFBody($this->PDFReader, $this->PDFXRefTable, $this->PDFTrailer->getRoot());
+        $this->Trailer = new \obray\pdf\Trailer($this->Reader);
+        $this->XRefTable = new \obray\pdf\XRefTable($this->Reader);
+        $this->Body = new \obray\pdf\Body($this->Reader, $this->XRefTable, $this->Trailer->getRoot());
     }
     
     public function encode()
